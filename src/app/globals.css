@@ -1,0 +1,285 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --font-playfair: 'Playfair Display', Georgia, serif;
+  --font-inter: 'Inter', system-ui, sans-serif;
+
+  /* Tulipa Brand Colors */
+  --tulipa-primary: #e8637a;
+  --tulipa-dark:    #c94b60;
+  --tulipa-light:   #f4a0b0;
+  --tulipa-bg:      #fce4e8;
+  --tulipa-muted:   #fdf2f4;
+  --berry:          #4a1c2e;
+  --berry-light:    #3d1c28;
+}
+
+@layer base {
+  * {
+    @apply border-tulipa-100;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-family: var(--font-inter);
+  }
+
+  body {
+    @apply bg-white text-berry-900 antialiased;
+    font-feature-settings: "cv11", "ss01";
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-playfair);
+  }
+
+  ::selection {
+    background: rgba(232, 99, 122, 0.2);
+    color: #4a1c2e;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #fdf2f4;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #e8637a;
+    border-radius: 999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #c94b60;
+  }
+}
+
+@layer components {
+  /* Glassmorphism */
+  .glass {
+    @apply backdrop-blur-md bg-white/70 border border-white/40 shadow-glass;
+  }
+
+  .glass-dark {
+    @apply backdrop-blur-md bg-berry-800/70 border border-white/10 shadow-glass;
+  }
+
+  .glass-rose {
+    @apply backdrop-blur-md bg-tulipa-50/80 border border-tulipa-200/50 shadow-glass;
+  }
+
+  /* Gradient Text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-tulipa-600 via-tulipa-500 to-rose-400 bg-clip-text text-transparent;
+  }
+
+  .gradient-text-dark {
+    @apply bg-gradient-to-r from-berry-900 via-tulipa-700 to-tulipa-500 bg-clip-text text-transparent;
+  }
+
+  /* Cards */
+  .card-hover {
+    @apply transition-all duration-500 ease-out;
+    transform-style: preserve-3d;
+  }
+
+  .card-hover:hover {
+    @apply shadow-card-hover -translate-y-2;
+  }
+
+  /* Buttons */
+  .btn-primary {
+    @apply relative inline-flex items-center justify-center gap-2 px-8 py-4
+           bg-gradient-tulipa text-white font-semibold rounded-2xl
+           shadow-tulipa transition-all duration-300
+           hover:shadow-tulipa-lg hover:-translate-y-0.5 hover:brightness-110
+           active:translate-y-0 active:shadow-tulipa;
+  }
+
+  .btn-secondary {
+    @apply relative inline-flex items-center justify-center gap-2 px-8 py-4
+           bg-white text-tulipa-600 font-semibold rounded-2xl
+           border-2 border-tulipa-200 transition-all duration-300
+           hover:bg-tulipa-50 hover:border-tulipa-400 hover:-translate-y-0.5
+           hover:shadow-card;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3
+           text-tulipa-600 font-medium rounded-xl transition-all duration-200
+           hover:bg-tulipa-50;
+  }
+
+  /* Section styling */
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-header {
+    @apply text-center mb-16;
+  }
+
+  /* Badge */
+  .badge-tulipa {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold
+           bg-tulipa-100 text-tulipa-700 border border-tulipa-200;
+  }
+
+  .badge-dark {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold
+           bg-berry-900/10 text-berry-900 border border-berry-900/20;
+  }
+
+  /* Price */
+  .price-tag {
+    @apply text-3xl font-bold text-tulipa-600;
+  }
+
+  /* Divider */
+  .divider-tulipa {
+    @apply w-20 h-1 bg-gradient-tulipa rounded-full mx-auto;
+  }
+
+  /* Floating decoration */
+  .orb {
+    @apply absolute rounded-full blur-3xl opacity-30 pointer-events-none;
+  }
+
+  /* Input */
+  .input-tulipa {
+    @apply w-full px-4 py-3 rounded-xl border border-tulipa-200
+           focus:outline-none focus:ring-2 focus:ring-tulipa-400 focus:border-transparent
+           bg-white placeholder:text-tulipa-300 text-berry-900
+           transition-all duration-200;
+  }
+}
+
+@layer utilities {
+  /* Text utilities */
+  .text-shadow-sm {
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  }
+
+  .text-shadow {
+    text-shadow: 0 2px 10px rgba(0,0,0,0.15);
+  }
+
+  /* Animation utilities */
+  .animate-delay-100 { animation-delay: 100ms; }
+  .animate-delay-200 { animation-delay: 200ms; }
+  .animate-delay-300 { animation-delay: 300ms; }
+  .animate-delay-400 { animation-delay: 400ms; }
+  .animate-delay-500 { animation-delay: 500ms; }
+
+  /* Hover 3D card */
+  .perspective { perspective: 1000px; }
+  .transform-gpu { transform: translate3d(0,0,0); }
+
+  /* Noise texture */
+  .noise::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1;
+    border-radius: inherit;
+  }
+
+  /* Shimmer loading */
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      rgba(255,255,255,0) 0%,
+      rgba(255,255,255,0.4) 50%,
+      rgba(255,255,255,0) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+
+  /* Mesh gradient bg */
+  .mesh-bg {
+    background-color: #fff1f4;
+    background-image:
+      radial-gradient(at 40% 20%, rgba(232,99,122,0.15) 0px, transparent 50%),
+      radial-gradient(at 80% 0%, rgba(244,160,176,0.1) 0px, transparent 50%),
+      radial-gradient(at 0% 50%, rgba(201,75,96,0.1) 0px, transparent 50%),
+      radial-gradient(at 80% 50%, rgba(252,228,232,0.3) 0px, transparent 50%),
+      radial-gradient(at 0% 100%, rgba(232,99,122,0.1) 0px, transparent 50%);
+  }
+
+  /* Gradient border */
+  .gradient-border {
+    position: relative;
+    border-radius: 1rem;
+  }
+
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, #e8637a, #f4a0b0, #c94b60);
+    z-index: -1;
+  }
+}
+
+/* Custom scrollbar for embla */
+.embla {
+  overflow: hidden;
+}
+.embla__container {
+  display: flex;
+}
+.embla__slide {
+  flex: 0 0 auto;
+  min-width: 0;
+}
+
+/* Countdown flip animation */
+@keyframes flipDown {
+  0%   { transform: rotateX(0deg); }
+  50%  { transform: rotateX(-90deg); }
+  100% { transform: rotateX(0deg); }
+}
+
+.flip-card {
+  animation: flipDown 0.5s ease-in-out;
+}
+
+/* Smooth number transitions */
+.countdown-num {
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Category pill active */
+.category-pill {
+  @apply px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 cursor-pointer;
+}
+
+.category-pill.active {
+  @apply bg-gradient-tulipa text-white shadow-tulipa;
+}
+
+.category-pill:not(.active) {
+  @apply bg-white text-berry-900 border border-tulipa-200 hover:border-tulipa-400 hover:text-tulipa-600;
+}
+
+/* WhatsApp button pulse */
+@keyframes whatsapp-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
+  70% { box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+.whatsapp-pulse {
+  animation: whatsapp-pulse 2s infinite;
+}
+
